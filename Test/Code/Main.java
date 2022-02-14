@@ -1,19 +1,37 @@
-class Figure {
-    protected String str;
-    String Show() {return "";}
-    double Area() {return 0;}
+class ExcpRadius extends Exception {
+    private double r;
+    private String msg;
+    private Float temp;
+    ExcpRadius(double r_p) {
+        r = r_p;
+        msg = "The radius must be greater than 0. Invalid values: ";
+        temp = new Float(r);
+        msg += temp.toString();
+    }
+    public String getMessage() {
+        return msg;
+    }
 }
 
-class Circle extends Figure {
+interface Figure {
+    public String Show();
+    public double Area();
+}
+
+class Circle implements Figure {
+    protected String str;
     protected double r;
     protected Float temp;
-    Circle(double r_p){
+    Circle(double r_p) throws ExcpRadius {
+        if (r_p <= 0) {
+            throw new ExcpRadius(r_p);
+        }
         r = r_p;
     }
-    double Area(){
+    public double Area(){
         return 3.14 * (r * r);
     }
-    String Show(){
+    public String Show(){
         str = "Circle info: ";
         str += "Radius: ";
         temp = new Float(r);
@@ -26,17 +44,18 @@ class Circle extends Figure {
     }
 }
 
-class Rectangle extends Figure {
+class Rectangle implements Figure {
+    protected String str;
     protected double a, b;
     protected Float temp;
     Rectangle(double a_p, double b_p){
         a = a_p;
         b = b_p;
     }
-    double Area(){
+    public double Area(){
         return a * b;
     }
-    String Show(){
+    public String Show(){
         str = "Rectangle info: ";
         str += "Side a: ";
         temp = new Float(a);
@@ -83,12 +102,18 @@ class Cylinder
 
 class Main {
     public static void main(String[] args) {
-        Figure shp;
+        Figure shp = null;
         Cylinder clr;
-        shp = new Circle(5);
+        try {
+            shp = new Circle(5);
+        }
+        catch(ExcpRadius e) {
+            System.out.println(e.getMessage());
+            System.out.println("Try again...");
+        }
         System.out.println(shp.Show());
-        shp = new Rectangle(4,5);
-        System.out.println(shp.Show());
+        //shp = new Rectangle(4,5);
+        //System.out.println(shp.Show());
         clr = new Cylinder(3, new Circle(3));
         System.out.println(clr.Show());
     }
