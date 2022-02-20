@@ -106,15 +106,15 @@ class Main {
         Cylinder clr;
         try {
             shp = new Circle(5);
+	    clr = new Cylinder(3, new Circle(3));
         }
         catch(ExcpRadius e) {
             System.out.println(e.getMessage());
             System.out.println("Try again...");
         }
         System.out.println(shp.Show());
-        //shp = new Rectangle(4,5);
-        //System.out.println(shp.Show());
-        clr = new Cylinder(3, new Circle(3));
-        System.out.println(clr.Show());
+	System.out.println(clr.Show());
+        shp = new Rectangle(4,5);
+        System.out.println(shp.Show());
     }
 }
