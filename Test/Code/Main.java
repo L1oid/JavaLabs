@@ -103,7 +103,7 @@ class Cylinder
 class Main {
     public static void main(String[] args) {
         Figure shp = null;
-        Cylinder clr;
+        Cylinder clr = null;
         try {
             shp = new Circle(5);
 	    clr = new Cylinder(3, new Circle(3));
