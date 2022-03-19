@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Group fx:id="root" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <AnchorPane prefHeight="463.0" prefWidth="491.0" style="-fx-background-color: #00FA9A;">
+         <children>
+            <Button fx:id="btn_order" layoutX="124.0" layoutY="386.0" mnemonicParsing="false" onAction="#click_order" prefHeight="45.0" prefWidth="95.0" style="-fx-background-color: #9ACD32;" text="Order">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <VBox layoutX="326.0" prefHeight="483.0" prefWidth="215.0">
+               <children>
+                  <Label prefHeight="47.0" prefWidth="75.0" text="Dish:">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="62.0" prefWidth="179.0" text="Salad">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <graphic>
+                        <CheckBox fx:id="salad_cb" mnemonicParsing="false" onAction="#click_salad_cb">
+                           <graphic>
+                              <TextField fx:id="salad_tf" onAction="#click_salad_tf" prefHeight="29.0" prefWidth="36.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                           </graphic>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
+                     </graphic>
+                  </Label>
+                  <Label fx:id="salad_price" prefHeight="47.0" prefWidth="220.0" text="Price: 120 Rub">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="salad_amount" prefHeight="47.0" prefWidth="220.0" text="Amount: 18">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="62.0" prefWidth="198.0" text="Borsch">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <graphic>
+                        <CheckBox fx:id="borsch_cb" mnemonicParsing="false" onAction="#click_borsch_cb">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="borsch_tf" onAction="#click_borsch_tf" prefHeight="29.0" prefWidth="36.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                           </graphic>
+                        </CheckBox>
+                     </graphic>
+                  </Label>
+                  <Label fx:id="borsch_price" prefHeight="47.0" prefWidth="220.0" text="Price: 80 Rub">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="borsch_amount" prefHeight="32.0" prefWidth="118.0" text="Amount: 17">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="62.0" prefWidth="198.0" text="Cutlet">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <graphic>
+                        <CheckBox fx:id="cutlet_cb" mnemonicParsing="false" onAction="#click_cutlet_cb">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="cutlet_tf" onAction="#click_cutlet_tf" prefHeight="29.0" prefWidth="36.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                           </graphic>
+                        </CheckBox>
+                     </graphic>
+                  </Label>
+                  <Label fx:id="cutlet_price" prefHeight="47.0" prefWidth="220.0" text="Price: 70 Rub">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cutlet_amount" prefHeight="47.0" prefWidth="220.0" text="Amount: 25">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="62.0" prefWidth="240.0" text="Compote">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <graphic>
+                        <CheckBox fx:id="compote_cb" mnemonicParsing="false" onAction="#click_compote_cb">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <graphic>
+                              <TextField fx:id="compote_tf" onAction="#click_compote_tf" prefHeight="29.0" prefWidth="36.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                           </graphic>
+                        </CheckBox>
+                     </graphic>
+                  </Label>
+                  <Label fx:id="compote_price" prefHeight="47.0" prefWidth="220.0" text="Price: 40 Rub">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="compote_amount" prefHeight="47.0" prefWidth="220.0" text="Amount: 20">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <AnchorPane fx:id="check_pane" layoutX="51.0" layoutY="39.0" prefHeight="315.0" prefWidth="241.0" style="-fx-background-color: #ffffff;" visible="false">
+               <children>
+                  <Label text="Order Check:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="order_check_list" layoutX="10.0" layoutY="56.0" prefHeight="203.0" prefWidth="222.0" wrapText="true" />
+                  <Label fx:id="order_check_sum" layoutX="57.0" layoutY="265.0" prefHeight="45.0" prefWidth="179.0" text="Sum: ">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</Group>

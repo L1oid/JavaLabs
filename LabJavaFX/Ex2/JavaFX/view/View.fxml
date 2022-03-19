@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Group fx:id="root" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <CheckBox fx:id="Weather_CB" mnemonicParsing="false" onAction="#click" text="Weather" />
+      <CheckBox fx:id="Time_CB" layoutY="27.0" mnemonicParsing="false" onAction="#click" text="Time" />
+      <CheckBox fx:id="News_CB" layoutY="52.0" mnemonicParsing="false" onAction="#click" text="News" />
+      <VBox layoutX="83.0" prefHeight="200.0" prefWidth="193.0" style="-fx-background-color: #2E3348;">
+         <children>
+            <Label fx:id="Weather_Widget" text="-23, Snow" visible="false" textFill="WHITE">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label fx:id="Time_Widget" text="18:28" visible="false" textFill="WHITE">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label fx:id="News_Widget" text="CNN" visible="false" textFill="WHITE">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</Group>
