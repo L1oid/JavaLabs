@@ -39,7 +39,7 @@ class NewThread implements Runnable {
         System.out.println("Поток создан: " + t);
         t.start();
     }
-    public synchronized void run() {
+    public void run() {
         while(true) {
             try {
                 info.InfoThread(id);
