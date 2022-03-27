@@ -1,37 +1,60 @@
+class Info {
+    boolean valueSet = false;
+    synchronized void InfoThread(int id) {
+        if (id == 1) {
+            while(valueSet) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    System.out.println("Ошибка!");
+                }
+            }
+            System.out.println(Thread.currentThread().getName());
+            valueSet = true;
+            notify();
+        }
+        else if (id == 2) {
+            while(!valueSet) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    System.out.println("Ошибка!");
+                }
+            }
+            System.out.println(Thread.currentThread().getName());
+            valueSet = false;
+            notify();
+        }
+    }
+}
+
 class NewThread implements Runnable {
     Thread t;
-    NewThread() {
-        //создать новый, второй поток исполнения
-        t = new Thread(this, "Демонстрационный поток");
-        System.out.println("Дочерний поток создан: " + t);
-        t.start(); // запустить поток исполнения
+    Info info;
+    int id;
+    NewThread(int id_p, Info info) {
+        id = id_p;
+        this.info = info;
+        t = new Thread(this, "Поток" + id);
+        System.out.println("Поток создан: " + t);
+        t.start();
     }
-
-    //Точка входа во второй поток исполнения
-    public void run() {
-        try {
-            for (int i = 5; i > 0; i--) {
-                System.out.println("Дочерний поток: " + i);
-                Thread.sleep(500);
+    public synchronized void run() {
+        while(true) {
+            try {
+                info.InfoThread(id);
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                System.out.println("Поток прерван.");
             }
-        } catch (InterruptedException e) {
-            System.out.println("Дочерний поток прерван.");
         }
-        System.out.println("Дочерний поток завершен.");
     }
 }
 
 class Main {
     public static void main(String args[]) {
-        new NewThread(); //создать новый поток
-        try {
-            for (int i = 5; i > 0; i--) {
-                System.out.println("Главный поток: " + i);
-                Thread.sleep(1000);
-            }
-        } catch (InterruptedException e) {
-            System.out.println("Главный поток прерван.");
-        }
-        System.out.println("Главный поток завершен.");
+        Info info = new Info();
+        new NewThread(1, info);
+        new NewThread(2, info);
     }
 }
