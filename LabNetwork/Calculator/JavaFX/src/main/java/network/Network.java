@@ -6,13 +6,27 @@ import java.io.*;
 
 public class Network {
     MySocket mySocket;
-    public Network() {
+    private static Network instance;
+    private  Network() {};
+    public static Network getInstance() {
+        if(instance == null) {
+            instance = new Network();
+        }
+        return instance;
+    }
+
+    public void openNetwork() {
         mySocket = new MySocket("127.0.0.1",1111);
+    }
+
+    public  void closeNetwork() {
+        mySocket.closeSocket();
     }
 
     public void send(String str) {
         mySocket.sendInfo(str);
     }
+
     public String get() {
         return mySocket.getInfo();
     }
@@ -58,10 +72,15 @@ class MySocket {
         }
     }
 
-    public void finalize() throws Throwable {
-        in.close();
-        out.close();
-        s.close();
-        System.out.println("Finish");
+    public void closeSocket() {
+        try {
+            in.close();
+            out.close();
+            s.close();
+            System.out.println("Finish");
+        }
+        catch (Exception e) {
+            System.out.println("Error: " + e);
+        }
     }
 }

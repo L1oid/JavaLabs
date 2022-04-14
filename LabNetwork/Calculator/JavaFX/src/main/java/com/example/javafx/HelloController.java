@@ -9,7 +9,6 @@ import network.Network;
 
 public class HelloController {
     String temp_s;
-    Network network;
 
     @FXML
     private Button btn0;
@@ -73,10 +72,6 @@ public class HelloController {
 
     @FXML
     private Label window_output;
-
-    public HelloController() {
-        network = new Network();
-    }
 
     @FXML
     void act0(ActionEvent event) {
@@ -188,6 +183,7 @@ public class HelloController {
     @FXML
     void act_eq(ActionEvent event) {
         temp_s = window_output.getText();
+        Network network = Network.getInstance();
         network.send(temp_s);
         window_output.setText(network.get());
     }

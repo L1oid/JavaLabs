@@ -53,6 +53,7 @@ class Network {
                         in.close();
                         out.close();
                         s.close();
+                        System.out.println("in.close out.close s.close");
                     } catch (Exception exception) {
                         System.out.println(exception);
                     }
