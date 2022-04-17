@@ -76,7 +76,7 @@ class MySocket {
         try {
             in.close();
             out.close();
-            s.close();
+            //s.close();
             System.out.println("Finish");
         }
         catch (Exception e) {
