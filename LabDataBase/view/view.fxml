@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <children>
-      <TableView fx:id="DB_table" prefHeight="534.0" prefWidth="402.0">
+      <TableView fx:id="database_table" prefHeight="534.0" prefWidth="402.0">
          <columns>
             <TableColumn fx:id="columnId" prefWidth="100.0" text="ID машины" />
             <TableColumn fx:id="columnName" prefWidth="150.0" text="Марка машины" />

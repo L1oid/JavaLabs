@@ -46,7 +46,7 @@ public class car {
         ObservableList<car> cars = FXCollections.observableArrayList();
         ResultSet rs;
         String query = "select * from car";
-        rs = DB.exeQuery(query);
+        rs = database.exeQuery(query);
         while(rs.next()){
             car car = new car(rs.getInt("id"), rs.getString("name"), rs.getInt("price"));
             cars.add(car);
@@ -58,7 +58,7 @@ public class car {
         ObservableList<car> cars = FXCollections.observableArrayList();
         ResultSet rs;
         String query = "select * from car where " + queryFilter + ";";
-        rs = DB.exeQuery(query);
+        rs = database.exeQuery(query);
         while(rs.next()){
             car car = new car(rs.getInt("id"), rs.getString("name"), rs.getInt("price"));
             cars.add(car);
@@ -68,16 +68,16 @@ public class car {
 
     public static void addCar(String id, String name, String price){
         String query = "insert into car(id, name, price)\nvalues ("+ id + ", \'" + name + "\', " + price + ");";
-        DB.exeUpdate(query);
+        database.exeUpdate(query);
     }
 
     public static void updateCar(String id, String name, String price){
         String query = "update car\nset name=\'" + name + "\', price=" + price + " \nwhere id=" + id + ";";
-        DB.exeUpdate(query);
+        database.exeUpdate(query);
     }
 
     public static void deleteCar(String id){
         String query = "delete from car\nwhere id=" + id + ";";
-        DB.exeUpdate(query);
+        database.exeUpdate(query);
     }
 }

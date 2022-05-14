@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DB {
+public class database {
     static Connection connection;
     String username;
     String password;
 
-    public DB(String username, String password){
+    public database(String username, String password){
         this.username = username;
         this.password = password;
     }

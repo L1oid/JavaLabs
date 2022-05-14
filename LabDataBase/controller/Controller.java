@@ -27,15 +27,15 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import database.DB;
+import database.database;
 import database.car;
 
 
 public class Controller implements Initializable{
 
     @FXML
-    TableView<car> DB_table; 
-    static TableView<car> DB_table_copy;
+    TableView<car> database_table; 
+    static TableView<car> database_table_copy;
     @FXML
     TableColumn<car, Integer> columnId;
     @FXML
@@ -46,7 +46,7 @@ public class Controller implements Initializable{
     Button btn_filter;
     @FXML
     TextField textQuery;
-    DB db;
+    database database;
     Statement stmt = null;
     Connection con = null;
     ResultSet rs = null;
@@ -58,8 +58,8 @@ public class Controller implements Initializable{
         columnId.setCellValueFactory(new PropertyValueFactory<car, Integer>("id"));
         columnName.setCellValueFactory(new PropertyValueFactory<car, String>("name"));
         columnPrice.setCellValueFactory(new PropertyValueFactory<car, Integer>("price"));
-        db = new DB("postgres", "system");
-        con = db.getConnection(); 
+        database = new database("postgres", "system");
+        con = database.getConnection(); 
 
         ContextMenu cm = new ContextMenu();
         MenuItem act1 = new MenuItem("Insert");
@@ -69,12 +69,12 @@ public class Controller implements Initializable{
         MenuItem act3 = new MenuItem("Delete");
         cm.getItems().add(act3);
 
-        DB_table.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+        database_table.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent click) {
                 if(click.getButton() == MouseButton.SECONDARY) {
-                    cm.show(DB_table_copy, click.getScreenX(), click.getScreenY());
+                    cm.show(database_table_copy, click.getScreenX(), click.getScreenY());
                 }
             }
         });
@@ -90,7 +90,7 @@ public class Controller implements Initializable{
         act3.setOnAction(event -> {
             delete();
         });
-        DB_table_copy = DB_table;
+        database_table_copy = database_table;
         refresh();
     }
 
@@ -104,7 +104,7 @@ public class Controller implements Initializable{
             stage.setTitle("Insert");
             stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(DB_table.getScene().getWindow());
+            stage.initOwner(database_table.getScene().getWindow());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -122,7 +122,7 @@ public class Controller implements Initializable{
             stage.setTitle("Update");
             stage.setResizable(false);
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(DB_table.getScene().getWindow());
+            stage.initOwner(database_table.getScene().getWindow());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -131,7 +131,7 @@ public class Controller implements Initializable{
     }
 
     public void delete(){
-        String id = String.valueOf(DB_table_copy.getSelectionModel().getSelectedItem().getId());
+        String id = String.valueOf(database_table_copy.getSelectionModel().getSelectedItem().getId());
         car.deleteCar(id);
         refresh();
     }
@@ -143,7 +143,7 @@ public class Controller implements Initializable{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        DB_table_copy.setItems(cars);
+        database_table_copy.setItems(cars);
     }
 }
 
