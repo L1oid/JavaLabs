@@ -54,18 +54,6 @@ public class car {
         return cars;
     }
 
-    public static ObservableList<car> getFilteredCars(String queryFilter) throws SQLException{
-        ObservableList<car> cars = FXCollections.observableArrayList();
-        ResultSet rs;
-        String query = "select * from car where " + queryFilter + ";";
-        rs = database.exeQuery(query);
-        while(rs.next()){
-            car car = new car(rs.getInt("id"), rs.getString("name"), rs.getInt("price"));
-            cars.add(car);
-        }
-        return cars;
-    } 
-
     public static void addCar(String id, String name, String price){
         String query = "insert into car(id, name, price)\nvalues ("+ id + ", \'" + name + "\', " + price + ");";
         database.exeUpdate(query);
